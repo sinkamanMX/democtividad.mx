@@ -1,0 +1,75 @@
+<?php $this->headScript()->appendFile('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false') ?>
+<?php $this->headScript()->appendFile('/js/bootstrap-slider.js'); ?> 
+<?php $this->headScript()->appendFile('/js/jquery.countdown360.js'); ?> 
+<?php $this->headScript()->appendFile('/js/atn/rastreotels.js'); ?>
+<?php $control=0?>
+<div id="divDataPersonal" class="hide"><?php foreach($this->aTecnicos as $key => $items):?><?php echo ($control==0) ? '': '?';?><?php echo $items['ID']."|".$items['NAME']."|".$items['ID_SUCURSAL'];?><?php $control++;?><?php endforeach;?>
+</div>
+<div class="row panel-data formcustom">
+	<div class="span12">	
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">Rastreo De Teléfonos</div>
+            </div>
+            <div class="block-content-min collapse in">
+                <div class="span12">
+	                <div class="span3 row panel-data formcustom">
+	                		<div class="span12">
+	                			<div class="span3">
+	                				<label>Sucursal</label>
+	                			</div>
+	                			<div class="span9">
+									<select class="chzn-select" id="cboInstalacion" name="cboInstalacion" onChange="drawSelectPersonal(this.value);">
+										<option value="">Seleccionar una opción</option>
+										<?php echo $this->cInstalaciones;?>
+									</select>
+	                			</div>
+	                		</div>
+							<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th style="width:10px;"><input type="checkbox" name="inputAllCheck" id="inputAllCheck" onClick="optionAll(this.checked);"/></th>
+                                        <th>Técnico</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>                                
+                                    
+                                </tbody>
+                            </table>
+	                </div>
+	                <div class="span9 block">
+	                    <div id="Map" style="width:100%;height:400px;">
+
+	                    </div>  
+	                    <div class="">
+	                        <div class="span12">
+	                            <div id="countdown" ></div>
+	                                <div id="divSliderC" style="display:none;" class="block-content collapse in pull-right">
+	                                    <div class="muted pull-left">Intervalo de Actualización <b><span id="labelMinutes">60 </span> segs.</b></div>
+	                                    <div class="span4">                 
+	                                        <input id="slideTimeUp" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="120" data-slider-step="1" data-slider-value="60"/>
+	                                    </div> 
+	                                </div>                                
+	                        </div>                        
+	                    </div>                                         
+	                </div>
+                </div><!-- container-->
+            </div>                        
+        </div>
+	</div>
+</div>
+
+<div class="modal fade hide modal-lg" id="myModalMapa" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog ">
+    <div class="modal-content">
+    	<div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" ></h4>
+      	</div>
+      <div class="modal-form i-body">             
+        <iframe class="hmodal550" id="iFrameModalMapa" src="" style="zoom:0" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</div>	

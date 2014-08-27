@@ -1,0 +1,78 @@
+ <?php $this->headScript()->appendFile('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false') ?>
+ <?php $this->headScript()->appendFile('/js/callcenter/instalation.js') ?>   
+   <div class="row panel-data">
+		<div class="span12">			
+        	<div class="block row-min-h">
+				<div class="navbar">
+					<div class="navbar-inner">
+				        <ul class="breadcrumb">				            
+				            <li class="">
+				                <a href="/callcenter/newservice/index">Datos del Cliente</a> <span class="divider">/</span>	
+				            </li>
+				            <li class="active">
+				                <a href="javascript:void()">Ubicación de la Cita</a> <span class="divider">/</span>	
+				            </li>				            
+				        </ul>
+					</div>
+				</div>
+				<form method="POST" action="/callcenter/newservice/instalation" id="FormData" class="form-horizontal ">
+                	<input type="hidden" name="optReg" value="new" />
+					<fieldset>
+						<input type="hidden" value="<?php echo $this->data['inputLatitude'];?>" id="inputLatitude"   name="inputLatitude"/>
+						<input type="hidden" value="<?php echo $this->data['inputLongitude'];?>" id="inputLongitude" name="inputLongitude"/>
+						<input type="hidden" value="<?php echo $this->dataService['inputDom'];?>" id="inputDom"/>
+						<input type="hidden" value="<?php echo $this->dataService['inputDirDom'];?>" id="inputOtherDom"/>
+						<input type="hidden" value="<?php echo $this->direccion; ?>" id="inputDir"/>
+						<?php if($this->dataService['inputDirDom']==1 && $this->dataService['inputDom']==0):?>
+	                    	<div id="tabInstalacion">
+	                    		<fieldset>
+										<div class="span12">
+											<label class="span3">Seleccione centro de Atención</label>
+											<select class="span5 m-wrap" id="cboInstalacion" name="cboInstalacion" onChange="centerInstalacion(this.value)">
+												<option value="">Seleccionar una opción</option>
+						                        <?php foreach ($this->cInstalaciones as $key => $item): ?>
+						                            <option value="<?php echo $item['ID_SUCURSAL']?>"><?php echo $item['DESCRIPCION']?></option>
+						                        <?php endforeach; ?>
+						                        <?php $varOptionC = $item['ID_SUCURSAL']."|".$item['DESCRIPCION']."|Cto. Heroes|25|1|Satelite|Naucalpan|Mexico|53100|".$item['LATITUD']."|".$item['LONGITUD']; ?>
+						                        <input type="hidden" id="txt<?php echo $item['ID_SUCURSAL'];?>" value="<?php echo $varOptionC; ?>">
+						                    </select>													
+										</div>
+	                    		</fieldset>
+	                    	</div>
+						<?php endif;?>
+                    	<div id="tabMap">
+                    		<?php if($this->dataService['inputDirDom']== 2 || $this->dataService['inputDom']==1):?>
+								<div class="spam11">Ubique la dirección en el Mapa. Puede arrastrar o dar click para tener mayor precisión</div>
+                    		<?php endif;?>
+
+                    		<div class="block-content">                    			
+                    			<?php if($this->dataService['inputDirDom']==1 && $this->dataService['inputDom']==0):?>
+	                    			<div class="span3">
+	                    				<div id="dataCentro" class="row-min-h300">
+	                    					<h3>Seleccione un Centro de Instalación</h3>
+	                    				</div>
+	                    			</div>
+                    			<?php endif;?>
+								
+                    			<div class="<?php echo ($this->dataService['inputDirDom']== 2 || $this->dataService['inputDom']==1) ? 'span12': 'span9';?> ">
+		                        	<div id="myMapDraw" style="width:100%;height:350px;">
+
+		                        	</div>
+                    			</div>
+                    			
+                    		</div>
+                    	</div>	
+                    	
+						<div class="span11">
+					    	<div class="col-xs-4 col-md-5">
+								<div class="pull-right">			
+									<button type="button" class="btn" onClick="javascript:backToMain()">Cancelar</button>
+									<button type="submit" class="btn btn-default bg-btn-send">Continuar</button>
+								</div>    
+					    	</div>						
+						</div>						
+					</fieldset>	  
+                </form>	
+        	</div>
+    	</div>
+	</div>    

@@ -1,0 +1,96 @@
+<?php $this->headScript()->appendFile('/js/atn/mainDetalle.js') ?>     
+    <div class="row panel-data bg-white">		    
+        <div class="">
+        	<?php if($this->statusOpr):?>
+        		<script>
+        			parent.closeDetail();
+        		</script>
+        	<?php endif;?>
+            <div class="span12">  
+				<form method="POST" action="/atn/main/citadetalle?strInput=<?php echo $this->data['ID_CITA']?>" id="FormData" class="form-horizontal ">
+				<input type="hidden" id="opSearch" name="opSearch"  value="opSearch"/>     
+				<input type="hidden" id="strInput" name="strInput"  value="<?php echo $this->data['ID_CITA']?>"/>       	
+            	<input type="hidden" id="txtLatitud"  value="<?php echo $this->data['LAT_CITA']; ?>"/>
+            	<input type="hidden" id="txtLongitud" value="<?php echo $this->data['LON_CITA']; ?>"/>
+            	<input type="hidden" name="inputChangeDate" id="inputChangeDate" value="0"/>
+            	<h4>Detalle de la Cita <a href="javascript:setEditDate()"><i class=" icon-edit"></i></a></h4>
+            	<table  class="table-striped table-bordered span12" >     
+            		<tr>
+            			<td width="150px"><b>Estatus</b></td>
+            			<td width="250px">
+            				<div class="divLabel"><?php echo $this->data['ESTATUS'];?></div>	
+							<div class="divInput" style="display:none;">
+								<select class="m-wrap" id="inputEstatus" name="inputEstatus">
+									<option value="">Seleccionar una opción</option>													
+									<?php echo $this->Status;?>
+								</select>
+							</div>	            				
+            			</td>
+            			<td><b>Personal Asignado</b></td>
+            			<td>
+       						<div class="divLabel"><?php echo $this->data['OPERADOR'];?></div>	
+							<div class="divInput" style="display:none;">
+								<select class="m-wrap" id="inputPersonal" name="inputPersonal">
+									<option value="">Seleccionar una opción</option>													
+									<?php echo $this->personal;?>
+								</select>								
+							</div>	 
+            			</td>
+            		</tr>              	       		
+            		<tr>
+            			<td><b>Fecha /Hora de la Cita</b></td>
+            			<td colspan="3">
+							<div class="divLabel"><?php echo $this->data['FECHA_CITA'];?> <?php echo $this->data['HORA_CITA'];?></div>	
+							<div class="divInput" style="display:none;">
+								<input id="inputFecha" name="inputFecha" readonly type="text" class="form-control" value="<?php echo $this->data['FECHA_CITA'];?> <?php echo $this->data['HORA_CITA'];?>" >						
+							</div>								
+            			</td>
+            		</tr>
+            		<tr>
+            			<td><b>Contacto</b></td>
+            			<td><?php echo $this->data['CONTACTO'];?></td>
+            			<td><b>Tel. Contacto</b></td>
+            			<td><?php echo $this->data['TELEFONO_CONTACTO'];?></td>		
+            		</tr>   
+            		<tr>
+            			<td><b>Dirección de la cita</b></td>
+            			<td><?php echo $this->data['DIRECCION_CITA'];?></td>
+            			<td><b>Referencias</b></td>
+            			<td><?php echo $this->data['REF_CITA'];?></td>		
+            		</tr>             		
+            	</table>
+            	<h4>Datos del Cliente</h4>
+            	<table  class="table-striped table-bordered span12" >
+            		<tr>
+            			<td width="150px"><b>Nombre</b></td>
+            			<td width="250px"><?php echo $this->data['NOMBRE_CLIENTE'];?></td>
+            			<td><b>Tel.</b></td>
+            			<td><?php echo $this->data['TELEFONO_FIJO'];?></td>		
+            		</tr>               		           		         		
+            		<tr>
+            			<td><b>Tel. Movil</b></td>
+            			<td><?php echo $this->data['TELEFONO_MOVIL'];?></td>
+            			<td><b>Correo electrónico</b></td>
+            			<td><?php echo $this->data['EMAIL'];?></td>		
+            		</tr> 
+            		<tr>
+            			<td><b>Dirección de la cita</b></td>
+            			<td><?php echo $this->data['DIRECCION_CLIENTE'];?></td>
+            			<td><b>Referencias</b></td>
+            			<td><?php echo $this->data['REFERENCIAS'];?></td>		
+            		</tr>              		                          		
+            	</table>
+					<div class="span12">
+				    	<div class="col-xs-4 col-md-5">
+							<div class="pull-right">
+								<div class="divInput" style="display:none;">			
+									<button type="submit" class="btn btn-default bg-btn-send">Enviar</button>
+								</div>
+							</div>    
+				    	</div>						
+					</div>            	
+	            </form>
+	        </div>
+        </div>
+    </div>   
+</div>

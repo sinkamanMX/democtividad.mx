@@ -1,0 +1,85 @@
+ <?php $this->headScript()->appendFile('/js/callcenter/datefinish.js') ?>   
+   <div class="row panel-data">
+		<div class="span12">			
+        	<div class="block row-min-h">
+				<div class="navbar">
+					<div class="navbar-inner">
+				        <ul class="breadcrumb">				            
+				            <li class="">
+				                <a href="/callcenter/newservice/index">Datos del Cliente</a> <span class="divider">/</span>	
+				            </li>
+				            <li>
+				                <a href="/callcenter/newservice/instalation">Ubicación de la Cita</a> <span class="divider">/</span>	
+				            </li>	
+				            <!--<li>
+				                <a href="/callcenter/newservice/cardetail">Datos del Vehículo</a> <span class="divider">/</span>	
+				            </li>	-->	
+			            	<li class="active">
+				                <a href="javascript:void()">Fecha de la Cita</a> <span class="divider">/</span>	
+				            </li>					            			            			            
+				        </ul>
+					</div>
+				</div>
+				<form method="POST" action="/callcenter/newservice/datefinish" id="FormData" class="form-horizontal ">
+                	<input type="hidden" name="optReg" value="new" />
+					<fieldset>
+						<?php if($this->error):?>
+							<div class="alert alert-error">
+								<button class="close" data-dismiss="alert">&times;</button>
+								<strong>Error!</strong> Ocurrio un error al guardar la información, Favot de intentar mas tarde.
+							</div>
+						<?php  endif;?>
+						<div class="">
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">Dia de Instalación</label>
+									<div class="controls">
+				                          <input readonly id="inputDate" name="inputDate" type="text" class="form-control" value="<?php echo @$this->data['inputDate']; ?>" >
+									</div>
+								</div>				
+							</div>
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">Horarios Disponibles</label>
+									<div class="controls">
+										<div id="divhorario">
+											<select class="span10 m-wrap" id="inputhorario" name="inputhorario">
+												<option value="">Seleccionar una opción</option>
+											</select>
+										</div>											
+									</div>
+								</div>							
+							</div>						
+						</div>	
+						<div class="">
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">Contacto<span class="required">*</span></label>
+									<div class="controls">
+				                          <input id="inputContacto" name="inputContacto" data-required="1"  type="text" class="form-control upper" value="<?php echo @$this->data['inputContacto']; ?>" >
+									</div>
+								</div>				
+							</div>
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">Teléfono<span class="required">*</span></label>
+									<div class="controls">
+										<input type="tel" id="inputTelContacto" data-required="1" name="inputTelContacto" class="m-wrap upper" value="<?php echo (@$this->data['inputTelContacto']); ?>"  >
+									</div>
+								</div>							
+							</div>						
+						</div>							
+
+						<div class="span11">
+					    	<div class="col-xs-4 col-md-5">
+								<div class="pull-right">	
+									<button type="button" class="btn" onClick="javascript:backToMain()">Cancelar</button>		
+									<button type="submit" class="btn btn-default bg-btn-send">Terminar</button>
+								</div>    
+					    	</div>						
+						</div>						
+					</fieldset>	                	
+                </form>	
+        	</div>
+    	</div>
+	</div>    

@@ -1,0 +1,46 @@
+<?php $this->headScript()->appendFile('/vendors/fullcalendar/fullcalendar.js') ?>   
+<?php $this->headScript()->appendFile('/vendors/fullcalendar/gcal.js') ?>   
+<?php $this->headScript()->appendFile('/js/atn/mainAtn.js') ?>   
+    <div class="row panel-data">
+		<div class="span12">
+            <div class="block">
+                <div class="navbar navbar-inner block-header">
+                    <div class="muted pull-left">Citas</div>
+                    <div class="muted pull-right"><button class="btn" onClick="searchDialog();"><i class="icon-search"></i></button></div>
+                </div>
+                <div class="block-content collapse in row-min-h">
+                    <div class="span12">
+                        <div id="calendar"></div>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>   
+
+	<div class="modal fade hide modal-lg" id="myModalinfoVis" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	  <div class="modal-dialog ">
+	    <div class="modal-content">
+	    	<div class="modal-header">
+		        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		        <h4 class="modal-title" ></h4>
+	      	</div>
+	      <div class="modal-form i-body">             
+	        <iframe class="hmodal500" id="iFrameDetCita" src="" style="zoom:0" frameborder="0"></iframe>
+	      </div>
+	    </div>
+	  </div>
+	</div>	
+
+	<div class="modal fade hide modal-lg" id="MyModalSearch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+	  <div class="modal-dialog ">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+	        <h4 class="modal-title" >Buscar Citas</h4>
+	      </div>
+	      <div class="modal-form i-body">             
+			<iframe class="hmodal550" id="iFrameModaCita" src="" style="zoom:0" frameborder="0"></iframe>
+	      </div>
+	    </div>
+	  </div>
+	</div>	

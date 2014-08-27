@@ -1,0 +1,227 @@
+<?php $this->headScript()->appendFile('/js/main/validatePhones.js') ?>  
+<?php $disabled = ($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==1) ? 'disabled':'';?>
+<div class="row panel-data">
+    <input id="hRefLinkMain" type="hidden" value="/main/phones/index" />
+	<div class="span12">
+		<!-- block -->
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">
+					<a href="javascript:backToMainModule()">
+						<i class="icon-circle-arrow-left fa-1"></i></a>Información del Equipo</div>
+            </div>
+            <div class="block-content collapse in">
+		    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+		        <li class="active"><a href="#mapa" data-toggle="tab">Información</a></li>
+		        <?php if($this->idToUpdate>0):?>
+					<li><a href="#detalle" data-toggle="tab">Eventos</a></li>
+		    	<?php endif;?>		        
+		    </ul>
+
+		    <div id="my-tab-content" class="tab-content bg-white">
+		        <div class="tab-pane  <?php echo (@$this->eventAction) ? '':'active';?> " id="mapa">  
+		                <div class="span12">
+		                	<?php if(@$this->errors['eIMEI']):?>
+								<div id="divpErrorLogin" class="alert alert-error" style="display:block;">
+								  <button type="button" class="close" data-dismiss="alert">×</button>
+								  <h4>Error</h4>
+								  <div>El IMEI no se encuentra disponible</div>
+								</div>	
+		                	<?php elseif(@$this->errors['eIP']):?>
+								<div id="divpErrorLogin" class="alert alert-error" style="display:block;">
+								  <button type="button" class="close" data-dismiss="alert">×</button>
+								  <h4>Error</h4>
+								  <div>La IP no e encuentra disponible</div>
+								</div>	                	
+		                	<?php endif;?>
+							<?php if($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==0): ?>
+								<div id="divpErrorLogin" class="alert alert-error" style="display:block;">
+								  <button type="button" class="close" data-dismiss="alert">×</button>
+								  <h4>Error</h4>
+								  <div>Usted no tiene permiso para ver esta información</div>
+								</div>						
+							<?php else:?>	
+
+							<!-- BEGIN FORM-->
+							<?php if($disabled!='disabled'):?>
+							<form method="POST" action="/main/phones/getinfo" id="FormData" class="form-horizontal ">
+							<?php endif;?>	
+				                <input type="hidden" name="optReg" value="<?php echo ($this->idToUpdate>0) ? 'update': 'new';?>" />
+				                <input type="hidden" id="catId" name="catId" value="<?php echo $this->catId; ?>" />
+				                
+				                <?php if($this->resultOp=='okRegister'): ?>
+				                    <div class="alert alert-success">
+				                        <button class="close" data-dismiss="alert"></button>
+				                        Datos se almacenaron correctamente.
+				                    </div>  		              
+				                <?php endif; ?>					
+					                <fieldset>
+										<div class="control-group">
+											<label class="control-label">Marca<span class="required">*</span></label>
+											<div class="controls">
+												<select class="span6 m-wrap" name="inputMarca" id="inputMarca" <?php echo $disabled;?>  onChange="getoptionsCbo('Modelo','modelot',this.value,'','');">
+													<option value="">Seleccionar una opción</option>
+					                                <?php echo $this->marcas;?>
+												</select>
+											</div>
+										</div>	
+										<div class="control-group">
+											<label class="control-label">Modelo<span class="required">*</span></label>
+											<div class="controls">
+												<div id="divModelo">
+													<select class="m-wrap" name="inputModelo" id="inputModelo" <?php echo $disabled;?> >
+														<option value="">Seleccionar una opción</option>
+						                                <?php echo $this->modelos;?>
+													</select>
+												</div>
+											</div>
+										</div>							
+										<div class="control-group">
+											<label class="control-label">Descripción<span class="required">*</span></label>
+											<div class="controls">
+												<input type="text" name="inputDesc" data-required="1" class="span6 m-wrap" value="<?php echo @$this->data['DESCRIPCION']; ?>"  <?php echo $disabled;?> >
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label">IMEI<span class="required">*</span></label>
+											<div class="controls">
+												<input name="inputImei" type="text" class="span6 m-wrap" value="<?php echo @$this->data['IDENTIFICADOR']; ?>" <?php echo $disabled;?> >
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Teléfono<span class="required">*</span></label>
+											<div class="controls">
+												<input name="inputTel" type="text" class="span6 m-wrap" value="<?php echo @$this->data['TELEFONO']; ?>" <?php echo $disabled;?> >
+											</div>
+										</div>
+										<div class="control-group">
+											<label class="control-label">Activo<span class="required">*</span></label>
+											<div class="controls">
+												<select class="m-wrap" name="inputEstatus" id="inputEstatus" <?php echo $disabled;?> >
+													<option value="">Seleccionar una opción</option>
+					                                <?php echo $this->status;?>
+												</select>
+											</div>
+										</div>
+
+										<div class="control-group">
+											<label class="control-label">Usuario Asignado<span class="required">*</span></label>
+											<div class="controls">
+												<input type="hidden" id="inputIdAssign" name="inputIdAssign" value="<?php echo @$this->data['ID_ACTIVO'];?>"/>
+												<?php if(@$this->data['ASIGNADO']=='0' || @$this->idToUpdate==-1):?>
+													<input name="inputSearch" id="inputSearch" type="text" class="span4 m-wrap" value="<?php echo (@$this->data['ASIGNADO']=='0') ? 'Sin Asignar': @$this->data['ASIGNADO'];?>" readonly >
+													<button id="btnSearch" class="btn" ><i class="icon-search"></i></button>
+												<?php else:?>
+													<input name="inputAsign" type="text" class="span4 m-wrap" value="<?php echo @$this->data['ASIGNADO']; ?>" readonly >
+													<button id="btnDelRel" class="btn btn-danger" ><i class="icon-remove-sign icon-white"></i></button>
+												<?php endif;?>										
+											</div>
+										</div>								
+										<?php if($disabled!='disabled'):?>
+										<div class="form-actions">
+											<button type="submit" class="btn btn-primary">Guardar</button>
+											<button type="button" class="btn" onClick="javascript:backToMain()">Cancel</button>
+										</div>
+										<?php endif;?>
+								</fieldset>
+							<?php if($disabled!='disabled'):?>
+							</form>
+							<?php endif;?>
+							<!-- END FORM-->																
+							<?php endif;?>
+						</div>
+				    </div>
+					<div class="tab-pane <?php echo (@$this->eventAction) ? 'active':'';?>" id="detalle">  					
+						<div class="row span12">
+			                <?php if(@$this->eventAction): ?>
+			                    <div class="alert alert-success">
+			                        <button class="close" data-dismiss="alert"></button>
+			                        Datos se almacenaron correctamente.
+			                    </div>  		              
+			                <?php endif; ?>								
+							<!-- BEGIN FORM-->
+							<?php if($disabled!='disabled'):?>
+							<form method="POST" action="/main/phones/getinfo" id="FormData" class="form-horizontal ">
+								<input type="hidden" name="optReg" value="addEvento" />
+								<input type="hidden" id="catId" name="catId" value="<?php echo $this->catId; ?>" />
+							<?php endif;?>	
+								<fieldset>											
+									<div class="row row-margin-left25">
+										<div class="span5">
+											<div class="control-group">
+												<label class="control-label">Evento<span class="required">*</span></label>
+												<div class="controls">
+													<select class="chzn-select" id="inputEvento" name="inputEvento" >								
+														<option value="">Seleccionar una opción</option>
+														<?php if($this->eventos!=""): ?>
+															<option value="-99">Todos</option>
+														<?php endif;?>
+														<?php echo $this->eventos;?>
+													</select>										
+												</div>
+											</div>				
+										</div>
+										<div class="span2">
+											<?php if($disabled!='disabled'):?>
+											<div class="">
+												<button type="submit" class="btn btn-primary">Guardar</button>
+											</div>
+											<?php endif;?>						
+										</div>													
+									</div>
+								</fieldset>								
+
+							<?php if($disabled!='disabled'):?>
+							</form>
+							<?php endif;?>
+						</div>
+						<div class="row span11">
+                            <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="dataTable">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Evento</th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+                                <tbody>                                
+                                    <?php foreach(@$this->aRelEventos as $key => $items): ?>  
+                                    <tr class="odd gradeX">
+                                        <td><?php echo $items['ID']; ?></td>
+                                        <td><?php echo $items['EVENTO']; ?></td>
+                                        <td class="text-center">
+                                            <?php if($this->dataUser['ELIMINAR']==1): ?>
+												<form method="POST" action="/main/phones/getinfo" id="FormData" class="formcustom">
+													<input type="hidden" name="optReg" value="deleteEvent" />
+													<input type="hidden" id="catId" name="catId" value="<?php echo $this->catId; ?>" />
+													<input type="hidden" id="idRelation" name="idRelation" value="<?php echo $items['ID']; ?>" />
+                                                	<button type="submit" class="btn btn-danger"> <i class="icon-trash icon-white"></i></button>
+                                                </form>
+                                            <?php endif;?>
+                                        </td>
+                                    </tr>    
+                                    <?php endforeach;?>
+                                </tbody>
+                            </table>							
+						</div>
+					</div>					    
+				</div>			
+			</div>
+		</div>
+	</div>	
+</div> 
+
+<div class="modal fade hide modal-lg" id="MyModalSearch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" >Buscar Usuarios Sin Asignar</h4>
+      </div>
+      <div class="modal-form i-body">             
+		<iframe class="hmodal550" id="iFrameSearch" src="" style="zoom:0" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</div>	 

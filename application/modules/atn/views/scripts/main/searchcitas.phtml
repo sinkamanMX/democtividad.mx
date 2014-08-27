@@ -1,0 +1,100 @@
+<?php $this->headScript()->appendFile('/js/atn/mainAtnSearch.js') ?>     
+    <div class="block" style="display:<?php echo ($this->showForm==0) ? 'block' : 'none';?>">
+        <div class="navbar navbar-inner block-header">
+
+        </div>
+        <div class="block-content collapse in">
+            <div class="span12">       
+
+				<form method="POST" action="/atn/main/searchcitas" id="FormData" class="form-horizontal ">
+					<input type="hidden" id="opSearch" name="opSearch"  value="search"/>
+					<fieldset>
+						<div class="">
+							<div class="span6">
+								<div class="control-group">
+									<label class="control-label">Inicio<span class="required">*</span></label>
+									<div class="controls">
+				                          <input id="inputFechaIn" name="inputFechaIn" data-required="1"  type="text" class="form-control" value="" >
+									</div>
+								</div>				
+							</div>
+							<div class="span6">
+								<div class="control-group">
+									<label class="control-label">Fin<span class="required">*</span></label>
+									<div class="controls">
+										<input type="text" id="inputFechaFin" name="inputFechaFin" class="m-wrap" value="">
+									</div>
+								</div>							
+							</div>						
+						</div>
+
+						<div class="">
+							<div class="span6">
+								<div class="control-group">
+									<label class="control-label">Buscar<span class="required">*</span></label>
+									<div class="controls">
+										<input id="inputSearch" name="inputSearch" data-required="1"  place-holder="(nombre Cliente, telófono)" type="text" class="form-control" value="" >
+									</div>
+								</div>
+							</div>
+							<div class="span6">
+								<div class="control-group">
+									<label class="control-label">Estatus<span class="required">*</span></label>
+									<div class="controls">
+										<select class="span4 m-wrap" id="inputEstatus" name="inputEstatus">
+											<option value="">Seleccionar una opción</option>													
+											<?php echo $this->Status;?>
+										</select>
+									</div>
+								</div>							
+							</div>
+						</div>
+						<div class="span12">
+					    	<div class="col-xs-4 col-md-5">
+								<div class="pull-right">			
+									<button type="submit" class="btn btn-default bg-btn-send">Enviar</button>
+								</div>    
+					    	</div>						
+						</div>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- block -->
+    <div class="block" style="display:<?php echo ($this->showForm==1) ? 'block' : 'none';?>">
+        <div class="block-content collapse in">
+			<div class="muted pull-left"><a href="/atn/main/searchcitas"><i class="icon-chevron-left"></i>Regresar</a></div>        	
+            <div class="span12">                       
+                <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="dataTable">
+                    <thead>
+                        <tr>
+                        	<th>Estatus</th>
+                            <th>Fecha/Hora</th>
+                            <th>Contacto</th>
+                            <th>Tel.Contacto</th>
+                            <th>Cliente</th>
+                            <th>Dirección</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>                                
+                        <?php foreach($this->dataSearch as $key => $items): ?>  
+                        <tr class="odd gradeX">
+                            <td><?php echo $items['ESTATUS']; ?></td>
+                            <td><?php echo $items['FECHA_CITA']." ".$items['HORA_CITA']; ?></td>
+                            <td><?php echo $items['CONTACTO'] ?></td>
+                            <td><?php echo $items['TELEFONO_CONTACTO']; ?></td>
+                            <td><?php echo $items['NOMBRE_CLIENTE']; ?></td>
+                            <td><?php echo $items['DIRECCION_CITA'] ?></td>
+                            <td class="text-center">                                
+                                <a href="javascript:parent.showDetail(<?php echo $items['ID_CITA'];?>)"><button class="btn btn-primary"> <i class=" icon-eye-open icon-white"></i></button></a>
+                            </td>
+                        </tr>    
+                        <?php endforeach;?>                                             
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- /block -->

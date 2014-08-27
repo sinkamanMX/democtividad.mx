@@ -1,0 +1,674 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"module",
+				"moduleInfo"
+			],
+			[
+				"item",
+				"itemsModule"
+			],
+			[
+				"sAp",
+				"sApm"
+			],
+			[
+				"err",
+				"errorDesc"
+			],
+			[
+				"sA",
+				"sApm"
+			],
+			[
+				"l",
+				"label	Tag"
+			],
+			[
+				"font",
+				"font-family"
+			],
+			[
+				"div",
+				"div-text"
+			],
+			[
+				"sl",
+				"sl2-img-r"
+			],
+			[
+				"bloque",
+				"bloque-description"
+			],
+			[
+				"col",
+				"background-color"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"insi",
+				"inside-right"
+			],
+			[
+				"fis_ed",
+				"fisc_edo"
+			],
+			[
+				"fis_no",
+				"fisc_noext"
+			],
+			[
+				"bac",
+				"background-color"
+			],
+			[
+				"reg",
+				"registro-data-login"
+			],
+			[
+				"re",
+				"registro-login"
+			],
+			[
+				"c",
+				"car-label-button"
+			],
+			[
+				"color",
+				"colorSelected"
+			],
+			[
+				"prod",
+				"products"
+			],
+			[
+				"pro",
+				"products"
+			],
+			[
+				"id",
+				"id_products"
+			],
+			[
+				"gra",
+				"grantot"
+			],
+			[
+				"pre",
+				"price"
+			],
+			[
+				"peso",
+				"pesoProduct"
+			],
+			[
+				"input",
+				"input-append"
+			],
+			[
+				"spa",
+				"span-precio"
+			],
+			[
+				"sp",
+				"span-clave"
+			],
+			[
+				"margi",
+				"margin-left"
+			],
+			[
+				"car",
+				"car-div-description"
+			],
+			[
+				"car-",
+				"car-item"
+			],
+			[
+				"ma",
+				"margin"
+			],
+			[
+				"ba",
+				"background-color"
+			],
+			[
+				"h",
+				"height"
+			],
+			[
+				"shop",
+				"shop-long-description"
+			],
+			[
+				"sho",
+				"shop-carrusel"
+			],
+			[
+				"for",
+				"formMessage"
+			],
+			[
+				"form",
+				"formEmail"
+			],
+			[
+				"formT",
+				"formTypeMsg"
+			],
+			[
+				"fot",
+				"font-size"
+			],
+			[
+				"s",
+				"span	Tag"
+			],
+			[
+				"d",
+				"direccion"
+			],
+			[
+				"contct",
+				"contacto"
+			],
+			[
+				"add",
+				"add_info_marker"
+			],
+			[
+				"list",
+				"listLatLon"
+			],
+			[
+				"da",
+				"datapoints"
+			],
+			[
+				"data",
+				"datapoints"
+			],
+			[
+				"text",
+				"text-transform"
+			],
+			[
+				"auto",
+				"autocontrol"
+			],
+			[
+				"end",
+				"endforeach"
+			],
+			[
+				"th",
+				"this"
+			],
+			[
+				"current",
+				"CURRENT_TIMESTAMP"
+			],
+			[
+				"pa",
+				"pageHtml"
+			],
+			[
+				"paralla",
+				"parallaxsl3"
+			],
+			[
+				"up",
+				"updateUser"
+			],
+			[
+				"M",
+				"My_Model_Orders"
+			],
+			[
+				"appr",
+				"apprfc"
+			],
+			[
+				"apprazon",
+				"apprazon"
+			],
+			[
+				"appra",
+				"apprazon"
+			],
+			[
+				"no",
+				"noext"
+			],
+			[
+				"cur",
+				"currentpos"
+			],
+			[
+				"curre",
+				"currentpos"
+			],
+			[
+				"SLH",
+				"slh1"
+			],
+			[
+				"param",
+				"params"
+			],
+			[
+				"UTF",
+				"utf8_encode"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 287.0,
+		"selected_items":
+		[
+			[
+				"Package Control: ",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 153.0
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"file_history":
+	[
+		"/Users/itecno2/Documents/workspace/democtividad.mx/application/modules/callcenter/views/scripts/newservice/index.phtml",
+		"/Users/itecno2/Documents/workspace/democtividad.mx/application/modules/callcenter/views/scripts/newservice/instalation.phtml",
+		"/Users/itecno2/Documents/workspace/democtividad.mx/application/modules/callcenter/views/scripts/newservice/cardetail.phtml",
+		"/Users/itecno2/Documents/workspace/democtividad.mx/application/modules/callcenter/views/scripts/newservice/datefinish.phtml",
+		"/Users/itecno2/Documents/workspace/democtividad.mx/application/configs/app.ini",
+		"/Users/itecno2/Documents/workspace/democtividad.mx/application/modules/callcenter/controllers/NewserviceController.php",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/callcenter/controllers/ServicesController.php",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/callcenter/views/scripts/services/index.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/public/controllers/callcenter/services/js/scripts.js",
+		"/Users/itecno2/Documents/workspace/taccsi/public/controllers/callcenter/services/js/userinfo.js",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/callcenter/views/scripts/services/userinfo.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/views/layouts/admin_header.phtml",
+		"/Users/itecno2/Library/Application Support/Sublime Text 2/Packages/Package Control/Package Control.sublime-settings",
+		"/Users/itecno2/Documents/workspace/taccsi/application/views/layouts/header.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/login/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/public/controllers/login/js/login.js",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/admin/views/scripts/login/index.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/admin/views/scripts/admin/index.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/views/layouts/admin_layout.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/admin/controllers/UsersController.php",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/admin/controllers/ServicesController.php",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/admin/controllers/LoginController.php",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/admin/controllers/AdminController.php",
+		"/Users/itecno2/Documents/workspace/taccsi/taccsi.sublime-workspace",
+		"/Users/itecno2/Documents/workspace/taccsi/public/modules/services/js/scripts.js",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/admin/views/scripts/services/index.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/admin/views/scripts/services/stepone.phtml",
+		"/Users/itecno2/Documents/workspace/ricom/firma/firma.html",
+		"/Users/itecno2/Documents/workspace/taccsi/public/modules/services/js/stepone.js",
+		"/Users/itecno2/Documents/workspace/taccsi/application/views/layouts/header_admin.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/admin/views/scripts/admin/getmore.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/admin/views/scripts/services/step_one.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/public/modules/login/js/login.js",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/translations/mx/admin.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/translations/mx/errors.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/translations/mx/fields.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/translations/mx/pdf.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/modules/blockuserinfo/translations/mx.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/classes/Mail.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/translations/mx/tabs.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/modules/blockuserinfo/translations/es.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/themes/leo_tshirt/modules/blockuserinfo/translations/es.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/themes/liteblue/modules/blockuserinfo/es.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/themes/mistemas/theme818/modules/blockviewed/es.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/themes/theme006/modules/blockuserinfo/es.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/themes/theme818/modules/blockviewed/es.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/translations/mx.gzip",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/themes/techmarket/category.tpl",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/modules/bankwire/bankwire.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/modules/bankwire/views/templates/hook/payment.tpl",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/modules/blocknewsletter/blocknewsletter.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/modules/customerregistration/customerregistration.php",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/themes/techmarket/authentication.tpl",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/themes/techmarket/distribuidores.tpl",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/themes/techmarket/my-account.tpl",
+		"/Users/itecno2/Documents/workspace/ricom/prestashop/themes/techmarket/footer.tpl",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/admin/views/scripts/admin/getinfo.phtml",
+		"/Users/itecno2/Documents/wbs_taccsi.php",
+		"/Users/itecno2/Documents/workspace/taccsi/public/js/AdminLTE/dashboard.js",
+		"/Users/itecno2/Documents/workspace/taccsi/public/modules/users/js/scripts.js",
+		"/Users/itecno2/Documents/workspace/taccsi/public/modules/admin/js/index.js",
+		"/Users/itecno2/Documents/workspace/taccsi/application/views/layouts/layout_admin.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/views/layouts/layout.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/main/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/main/views/scripts/users/index.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/main/views/scripts/admin/index.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/main/views/scripts/admin/getmore.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/main/views/scripts/admin/getinfo.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/main/views/scripts/users/setdata.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/views/layouts/layout_blank.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/public/modules/users/scripts.js",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/main/views/scripts/login/index.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/configs/app.ini",
+		"/Users/itecno2/Documents/workspace/taccsi/application/views/layouts/layout_login.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/public/css/AdminLTE.css",
+		"/Users/itecno2/Documents/workspace/taccsi/public/css/landing-page.css",
+		"/Users/itecno2/Documents/workspace/taccsi/public/js/AdminLTE/app.js",
+		"/Users/itecno2/Documents/workspace/taccsi/application/views/layouts/layout-admin.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/main/views/scripts/main/_partials/slide4.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/main/views/scripts/main/_partials/slide3.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/admon/views/scripts/login/index.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/public/modules/admin/css/style-admin.css",
+		"/Users/itecno2/Documents/workspace/taccsi/public/libs/gumby/css/gumby.css",
+		"/Users/itecno2/Documents/workspace/taccsi/public/libs/kendo/styles/examples-offline.css",
+		"/Users/itecno2/Documents/workspace/taccsi/public/libs/kendo/styles/kendo.metro.min.css",
+		"/Users/itecno2/Documents/workspace/taccsi/public/admin/js/index.js",
+		"/Users/itecno2/Documents/workspace/taccsi/public/admin/css/style-admin.css",
+		"/Users/itecno2/Documents/workspace/taccsi/application/views/layouts/header-admin.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/views/layouts/footer-admin.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/admin/controllers/IndexController.php",
+		"/Users/itecno2/Documents/workspace/taccsi/public/css/style.css",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/main/views/scripts/main/_partials/slide2.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/main/views/scripts/main/_partials/slide1.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/application/modules/main/views/scripts/main/_partials/slide5.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/public/css/socialicious.css",
+		"/Users/itecno2/Documents/workspace/taccsi/public/css/owl.carousel.css",
+		"/Users/itecno2/Documents/workspace/taccsi/public/css/owl.theme.css",
+		"/Users/itecno2/Documents/workspace/taccsi/application/views/layouts/footer.phtml",
+		"/Users/itecno2/Documents/workspace/taccsi/public/js/scripts.js",
+		"/Users/itecno2/Documents/workspace/taccsi/public/js/main.js",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/main/privacidad.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/shopping/registro.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/public/css/style.css",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/profile/getprofile.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/shopping/stepfinal.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/profile/index.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/shopping/shoppingcar.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/public/js/login.js",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/profile/getorderinfo.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/main/register.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/shopping/index.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/views/layouts/header.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/shopping/shopping.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/main/_partials/slide4.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/public/js/index.js",
+		"/Users/itecno2/Documents/workspace/petlocator/application/views/layouts/footer.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/views/layouts/layout.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/public/js/jquery-ui.js",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/main/_partials/slide5.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/main/formdist.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/main/contacto.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/public/css/index.css",
+		"/Users/itecno2/Documents/workspace/petlocator/public/js/owl.carousel.js",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/main/faq.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/controllers/MainController.php",
+		"/Users/itecno2/Documents/workspace/petlocator/application/views/layouts/header_user.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/main/index.phtml",
+		"/Users/itecno2/Documents/workspace/petlocator/application/modules/main/views/scripts/main/_partials/slide3.phtml"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 0.0,
+		"where_history":
+		[
+			"<open folders>",
+			"/Users/itecno2/Documents/workspace/taccsi/library/Zend",
+			"<open folders>"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"ID_MODULO",
+			"layout_admin",
+			"myModal",
+			"wizard",
+			"PS_MAIL_USER",
+			"Cerrer",
+			"cerrer",
+			"Cerrer",
+			"cerrer",
+			"categorySize",
+			"Todas los",
+			"nuevos",
+			"Todas",
+			"Todos'",
+			"Todos",
+			"Todas",
+			"nuevos productos",
+			"los nuevos productos",
+			"Todas los nuevos productos",
+			"new-products",
+			"nuevos",
+			"Todos los nuevos",
+			"Todos",
+			"Todas'",
+			"Todas",
+			"Todas´",
+			"Todas\"",
+			"Todas",
+			"sales",
+			"best",
+			"nuevos",
+			"Todas las nuevos",
+			"bankwire_owner",
+			"'bankwire',",
+			"bankwire",
+			"tipo_cambio",
+			"consignación:",
+			"Mail::Send",
+			"Mail::Send(",
+			"error",
+			"create_account_error",
+			"company",
+			"contact_name2",
+			"}\"",
+			"Theme by WebHost.al",
+			"marca_inicio",
+			"ini",
+			"oprInicioViaje",
+			"dame_push_viaje",
+			"oprInicioViaje",
+			"opr_inicio",
+			"opr_Inicio",
+			">\n",
+			"<!",
+			"fa",
+			"com",
+			"'>\n",
+			"/>\n",
+			"header",
+			"form",
+			"%;\"></",
+			"-->\n",
+			"wid",
+			"ajax",
+			"LAYOUT",
+			".skin",
+			"js/",
+			"css/",
+			"k-con",
+			"function class_exists",
+			"class_exists",
+			"footer-admin.phtml",
+			"inside",
+			"BODY",
+			"global he",
+			"down",
+			"owl-ca",
+			"					<p id=\"requiredfieldsmsg\" class=\"sf_required_fields_msg\"><sup><span class=\"required\">*</span></sup> These fields are required.</p></div>\n					<p>&nbsp;</p>",
+			"uppercase",
+			"contact-p",
+			"h1",
+			"x2",
+			"../font/",
+			"uber-logo",
+			"bn",
+			"bnt",
+			"btn",
+			"uber-logo",
+			".png",
+			"font-fa",
+			"logo",
+			"echo \"\\n",
+			"peso_envio",
+			"		\n",
+			"    	\n",
+			"border",
+			"height: 100%;\nmargin-top: 70px;\nposition: absolute;\nfaq",
+			"height: 100%;\nmargin-top: 70px;\nposition: absolute;\n.faq",
+			"contact_let",
+			"contact_email",
+			"right",
+			"Control",
+			"-left",
+			"slide",
+			"slide5",
+			"<article class=\"ac-small\">",
+			"class=\"ac-small100\">",
+			"type=\"radio\"",
+			"slhs51",
+			"Dist",
+			"divDist",
+			"list",
+			"ac-small",
+			"h",
+			"left",
+			"slide5",
+			"contact_left",
+			".Contac",
+			".Contac ",
+			".Contact",
+			"height: 100%;\nmargin: 2% 0 0;\ncontact",
+			"height: 100%;\nmargin: 2% 0 0;\nposition: relative;\nContact",
+			"			\n",
+			"showraperstore",
+			"datapromos",
+			"btn",
+			"customNavigation",
+			"21"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": true,
+		"replace_history":
+		[
+			"admin_layout",
+			"Cerrar",
+			"/js/",
+			"/css/",
+			"../fonts/",
+			" ",
+			"<article class=\"ac-small100\">",
+			"class=\"ac-small\">",
+			"type=\"checkbox\"",
+			"parallaxv2",
+			"parallaxv2.",
+			"parallaxsl3",
+			">",
+			"<",
+			""
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 0.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 308.0,
+	"status_bar_visible": true
+}

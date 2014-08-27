@@ -1,0 +1,29 @@
+<?php $this->headScript()->appendFile('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false') ?>
+<?php $this->headScript()->appendFile('/js/main/map.js') ?>   
+<input type="hidden" id="inputLatitude"  value="<?php echo $this->data['LATITUD'];?>"/>
+<input type="hidden" id="inputLongitude" value="<?php echo $this->data['LONGITUD'];?>"/>
+<input type="hidden" id="inputAngulo"    value="<?php echo $this->data['ANGULO'];?>"/>
+<input type="hidden" id="inputVelocidad" value="<?php echo round($this->data['VELOCIDAD'],2);?>"/>
+<input type="hidden" id="inputBateria"   value="<?php echo $this->data['BATERIA'];?>"/>
+<input type="hidden" id="inputUbicacion" value="<?php echo $this->data['UBICACION'];?>"/>
+<input type="hidden" id="inputEvento"    value="<?php echo $this->data['EVENTO'];?>"/>
+<input type="hidden" id="inputFecha"     value="<?php echo $this->data['FECHA_GPS'];?>"/>
+<input type="hidden" id="inputStatus"    value="<?php echo $this->dataOk;?>"/> 
+<div id="Map" style="width: 100%; height: 100%">
+
+</div>
+
+<div id="modalMessages" class="modal hide">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">&times;</button>
+        <h3>Mensaje</h3>
+    </div>
+    <div class="modal-body">
+        <div id="divMessage">
+            <p>Comando Enviado correctamente.</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a data-dismiss="modal" class="btn" href="#">Aceptar</a>
+    </div>
+</div>      

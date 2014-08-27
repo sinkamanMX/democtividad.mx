@@ -1,0 +1,222 @@
+<?php $this->headScript()->appendFile('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false') ?>
+<?php $this->headScript()->appendFile('/js/bootstrap-slider.js'); ?> 
+<?php $this->headScript()->appendFile('/js/jquery.countdown360.js'); ?> 
+<?php $this->headStyle()->appendStyle('/css/slider.css'); ?>
+<?php echo $this->headLink()->appendStylesheet('/css/slider.css'); ?>
+<?php $this->headScript()->appendFile('/js/callcenter/mapDetail.js') ?> 
+        <div class="span12">
+            <!-- block -->
+            <div class="block">
+                <div class="block-content collapse in">
+                    <div class="span3">
+                        <div class="">
+                            <div class="block">
+                                <div class="navbar navbar-inner block-header">
+                                    <div class="muted pull-left">
+                                        <a href="/callcenter/rastreo/index">
+                                            <i class="icon-circle-arrow-left fa-1"></i></a>
+                                        Información del Cliente</div>
+                                </div>
+                                <div class="block-content collapse in">
+                                    <input type="hidden" id="inputId" name="inputId" value="<?php echo $this->data['strInput'];?>"/>
+                                    <h4>  <?php echo $this->data['CLIENTE'];?></h4>
+                                    <div><span><b>Dirección: </b><?php echo $this->data['DIRECCION'];?></span></div>
+                                    <div>
+                                    
+                                    <span><b>Tel. Fijo: </b><?php echo $this->data['TELEFONO_FIJO']?></span><br/>
+                                    <span><b>Tel. Moóvil: </b><?php echo $this->data['TELEFONO_MOVIL']?></span>
+                                    </div>
+                                </div>
+                               <div class="navbar navbar-inner block-header">
+                                    <div class="muted pull-left">Información del Vehículo</div>
+                                </div>
+                                <div class="block-content collapse in">
+                                    <h4> <?php echo $this->data['MARCA'];?> <?php echo $this->data['MODELO'];?></h4>
+                                    <div><span><b>Placas: </b><?php echo $this->data['PLACAS'];?> <b>Color:</b><?php echo $this->data['COLOR'];?></span></div>
+                                    <span><b>No. Serie </b><?php echo $this->data['SERIE']?></span><br/>
+                                    <span><b>IMEI </b><?php echo $this->data['IMEI']?></span><br/>
+                                    <span><b>IP: </b><?php echo $this->data['IP']?></span><br/>
+                                </div> 
+                                <div class="block-content collapse in">
+                                    <div class="muted pull-left">Intervalo de Actualización <b><span id="labelMinutes">60 </span> segs.</b></div>
+                                    <div class="span4">                 
+                                        <input id="slideTimeUp" data-slider-id='ex1Slider' type="text" data-slider-min="10" data-slider-max="120" data-slider-step="1" data-slider-value="60"/>
+                                    </div> 
+                                </div>                                                               
+                            </div>        
+                        </div>
+                        <div class="">
+                            <?php foreach($this->commands as $key => $items): ?> 
+                                <?php if($items['DESCRIPCION']=='APAGADO DE MOTOR'):?>
+                                    <button onClick="sendCommand(<?php echo $items['ID_COMANDO'];?>);" type="button" class="btn btn-large btn-block btn-warning">Bloquear Motor</button>
+                                <?php else:?>
+                                    <button onClick="sendCommand(<?php echo $items['ID_COMANDO'];?>);" class="btn btn-large btn-block btn-info">Actualizar Posición</button>                                
+                                <?php endif;?> 
+                            <?php endforeach;?>
+                        </div>
+                    </div>
+                    <div class="span9 row-min-h300">
+                        <div class="">
+                            <div id="Map" style="width:100%;height:250px;">
+
+                            </div>        
+                        </div>    
+                        <div class="">
+                            <div class="span12">                 
+                                <!--<span id="counterUp" class="fa-2">60</span>-->
+                                <div id="countdown"></div>
+                            </div>  
+                        </div> 
+                        <div class="">
+                            <div class="span12">                 
+
+                                <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+                                    <li class="active"><a href="#gral" data-toggle="tab">Recorrido Hoy</a></li>
+                                    <li><a href="#incidencias" data-toggle="tab">Recorrido Ayer</a></li>
+                                </ul>
+
+                                <div id="my-tab-content" class="tab-content">
+                                    <div class="tab-pane active" id="gral">                                
+
+                                        <div class="table-toolbar">
+                                          <div class="btn-group">
+                                            <a id="btnShow" href="javascript:MostrarMapa(0)">
+                                                <button class="btn btn-info"> Mostrar en Mapa <i class="icon-globe icon-white"></i></button></a>
+
+                                            <a id="btnHide" href="javascript:OcultarRecorrido(0)" style="display:none;">
+                                                <button class="btn btn-success"> Continuar Rastreando <i class="icon-remove-circle icon-white"></i></button></a>                                                
+                                          </div>
+                                        </div>                                          
+                                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered"  id="tableRecorridoToday">
+                                            <thead>
+                                                <tr>
+                                                    <th>Evento</th>
+                                                    <th>Fecha GPS</th>
+                                                    <th>Latitud</th>
+                                                    <th>Longitud</th>
+                                                    <th>Velocidad</th>
+                                                    <th>Angulo</th>
+                                                    <th>Ubicación</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $result = '';?>
+                                                <?php foreach($this->recorridoToday as $key => $items): ?>
+                                                    <tr>
+                                                        <td><?php echo $items['EVENTO'];?></td>
+                                                        <td><?php echo $items['FECHA_GPS'];?></td>
+                                                        <td><?php echo $items['LATITUD'];?></td>
+                                                        <td><?php echo $items['LONGITUD'];?></td>
+                                                        <td><?php echo round($items['VELOCIDAD'],2);?></td>
+                                                        <td><?php echo round($items['ANGULO'],2);?></td>
+                                                        <td><?php echo $items['UBICACION'];?></td>
+                                                        <td class="text-center">
+                                                            <a class="aShow" style="display:none;" href="javascript:centerDataMap('<?php echo $items['ID_POSICION']?>',0)">
+                                                                <button class="btn btn-info"> <i class="icon-globe icon-white"></i>
+                                                                </button>
+                                                            </a>
+                                                        </td>
+                                                   
+
+                                                    <?php $result .= ($result!="") ? "!" : "";?>
+                                                    <?php $dataRec = $items['ID_ACTIVO']."|".
+                                                                     $items['EVENTO']."|".
+                                                                     $items['LATITUD']."|".
+                                                                     $items['LONGITUD']."|".
+                                                                     round($items['VELOCIDAD'],2)."|".
+                                                                     $items['UBICACION']."|".
+                                                                     round($items['ANGULO'],2)."|".
+                                                                     $items['BATERIA']."|".
+                                                                     $items['FECHA_GPS'];?>
+                                                    <?php $result  .= $dataRec;?>                                                                          
+                                                    <input type="hidden" id="rec<?php echo $items['ID_POSICION']?>" value="<?php echo $dataRec;?>"/>                                                                     
+                                                </tr>
+                                                <?php  endforeach;?>
+                                            </tbody>
+                                        </table>
+                                        <div id="positionsToday" class="hide"><?php echo $result; ?></div>  
+                                    </div>
+                                    <div class="tab-pane" id="incidencias">                                
+                                        <div class="table-toolbar">
+                                          <div class="btn-group">
+                                            <a id="btnShowY" href="javascript:MostrarMapa(1)">
+                                                <button class="btn btn-info"> Mostrar en Mapa <i class="icon-globe icon-white"></i></button></a>
+
+                                            <a id="btnHideY" href="javascript:OcultarRecorrido(1)" style="display:none;">
+                                                <button class="btn btn-success"> Continuar Rastreando <i class="icon-remove-circle icon-white"></i></button></a>                                                
+                                          </div>
+                                        </div>                                          
+                                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered"  id="tableRecorridoA">
+                                            <thead>
+                                                <tr>
+                                                    <th>Evento</th>
+                                                    <th>Fecha GPS</th>
+                                                    <th>Latitud</th>
+                                                    <th>Longitud</th>
+                                                    <th>Velocidad</th>
+                                                    <th>Angulo</th>
+                                                    <th>Ubicación</th>
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <?php $resultY = '';?>
+                                                <?php foreach($this->recorridoYest as $key => $items): ?>
+                                                    <tr>
+                                                        <td><?php echo $items['EVENTO'];?></td>
+                                                        <td><?php echo $items['FECHA_GPS'];?></td>
+                                                        <td><?php echo $items['LATITUD'];?></td>
+                                                        <td><?php echo $items['LONGITUD'];?></td>
+                                                        <td><?php echo round($items['VELOCIDAD'],2);?></td>
+                                                        <td><?php echo round($items['ANGULO'],2);?></td>
+                                                        <td><?php echo $items['UBICACION'];?></td>
+                                                        <td class="text-center">
+                                                            <a class="aShowY" style="display:none;" href="javascript:centerDataMap('<?php echo $items['ID_POSICION']?>',1)">
+                                                                <button class="btn btn-info"> <i class="icon-globe icon-white"></i>
+                                                                </button>
+                                                            </a>
+                                                        </td>                                                    
+
+                                                    <?php $resultY .= ($resultY!="") ? "!" : "";?>
+                                                    <?php $dataRecY = $items['ID_ACTIVO']."|".
+                                                                     $items['EVENTO']."|".
+                                                                     $items['LATITUD']."|".
+                                                                     $items['LONGITUD']."|".
+                                                                     round($items['VELOCIDAD'],2)."|".
+                                                                     $items['UBICACION']."|".
+                                                                     round($items['ANGULO'],2)."|".
+                                                                     $items['BATERIA']."|".
+                                                                     $items['FECHA_GPS'];?>
+                                                    <?php $resultY  .= $dataRecY;?>                                                                     
+                                                    <input type="hidden" id="recYes<?php echo $items['ID_POSICION']?>" value="<?php echo $dataRecY;?>"/>
+                                                    </tr>
+                                                <?php  endforeach;?>
+                                            </tbody>
+                                        </table>
+                                        <div id="positionsYest" class="hide"><?php echo $resultY; ?></div>  
+
+                                    </div>                                    
+                                </div>    
+                            </div>  
+                        </div>                                                              
+                    </div>                      
+                </div>
+            </div>
+        </div>
+
+
+<div id="modalMessages" class="modal hide">
+    <div class="modal-header">
+        <button data-dismiss="modal" class="close" type="button">&times;</button>
+        <h3>Mensaje</h3>
+    </div>
+    <div class="modal-body">
+        <div id="divMessage">
+            <p>Comando Enviado correctamente.</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a data-dismiss="modal" class="btn" href="#">Aceptar</a>
+    </div>
+</div>          

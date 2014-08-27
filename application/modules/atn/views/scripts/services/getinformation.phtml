@@ -1,0 +1,49 @@
+<div class="row span11">
+    <form method="POST" action="/callcenter/rastreo/index" id="FormData" class="form-horizontal formcustom">
+        <fieldset>
+            <div class="span11">
+                <div class="span6">
+                    <label class="span3">Técnicos</label>
+                    <div id="divTecnico">
+                        <select class="m-wrap" id="inputTecnico" name="inputTecnico">
+                            <option value="">Seleccionar una opción</option>
+                            <?php echo $this->aTecnicos;?>
+                        </select>  
+                    </div>                                                 
+                </div>
+            </div>
+        </fieldset>
+    </form>                    
+</div>  
+
+<div class="row span11">
+    <div class="span3">
+        <div class="graphCircle" 
+            data-dimension="150" 
+            data-text="<?php echo $this->dataResumeTotal;?>" 
+            data-info="Total Citas" 
+            data-width="30" 
+            data-fontsize="38" 
+            data-percent="100" 
+            data-fgcolor="#7ea568" 
+            data-bgcolor="#E2E2E2" 
+            data-fill=""></div>
+    </div>        
+    <?php foreach($this->dataResume as $key => $items):?>
+    <?php $porcentaje = (round($items['TOTAL'] / $this->dataResumeTotal * 100, 0)); ?>
+    <div class="span3">
+        <div class="graphCircle" 
+            data-dimension="150" 
+            data-text="<?php echo $items['TOTAL'];?>" 
+            data-info="<?php echo $items['DESC'];?>" 
+            data-width="30" 
+            data-fontsize="38" 
+            data-percent="<?php echo $porcentaje;?>" 
+            data-fgcolor="<?php echo $items['COLOR'];?>" 
+            data-bgcolor="#E2E2E2" 
+            data-fill=""></div>
+    </div>    
+    <?php endforeach;?>           
+</div>  
+
+

@@ -1,0 +1,247 @@
+<?php $this->headScript()->appendFile('/js/main/validateUsers.js') ?>  
+<?php $disabled = ($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==1) ? 'disabled':'';?>
+<div class="row panel-data">
+    <input id="hRefLinkMain" type="hidden" value="/main/users/index" />
+	<div class="span12">
+		<!-- block -->
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">
+					<a href="javascript:backToMain()">
+						<i class="icon-circle-arrow-left fa-1"></i></a>Información del Usuario</div>
+            </div>
+            <div class="block-content collapse in">
+
+			    <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+			        <li class="active"><a href="#informacion" data-toggle="tab">Información</a></li>
+			        <?php if($this->idToUpdate>0 && @$this->data['FLAG_OPERACIONES']==1):?>
+						<li><a href="#detalle" data-toggle="tab">Horarios</a></li>
+			    	<?php endif;?>		        
+			    </ul>
+
+				<div id="my-tab-content" class="tab-content bg-white">
+					<div class="tab-pane <?php echo (@$this->eventAction) ? '':'active';?> " id="informacion">
+		                <div class="span12">
+		            	<?php if(@$this->errors['eMail']):?>
+							<div id="divpErrorLogin" class="alert alert-error" style="display:block;">
+							  <button type="button" class="close" data-dismiss="alert">×</button>
+							  <h4>Error</h4>
+							  <div>El E-mail no se encuentra disponible</div>
+							</div>	
+		            	<?php elseif(@$this->errors['eUsuario']):?>
+							<div id="divpErrorLogin" class="alert alert-error" style="display:block;">
+							  <button type="button" class="close" data-dismiss="alert">×</button>
+							  <h4>Error</h4>
+							  <div>La Usuario no se encuentra disponible</div>
+							</div>	                	
+		            	<?php endif;?>
+						<?php if($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==0): ?>
+							<div id="divpErrorLogin" class="alert alert-error" style="display:block;">
+							  <button type="button" class="close" data-dismiss="alert">×</button>
+							  <h4>Error</h4>
+							  <div>Usted no tiene permiso para ver esta información</div>
+							</div>						
+						<?php else:?>	
+
+						<!-- BEGIN FORM-->
+						<?php if($disabled!='disabled'):?>
+						<form method="POST" action="/main/users/getinfo" id="FormData" class="form-horizontal ">
+						<?php endif;?>	
+			                <input type="hidden" name="optReg" value="<?php echo ($this->idToUpdate>0) ? 'update': 'new';?>" />
+			                <input type="hidden" id="catId" name="catId" value="<?php echo $this->catId; ?>" />
+			                
+			                <?php if($this->resultOp=='okRegister'): ?>
+			                    <div class="alert alert-success">
+			                        <button class="close" data-dismiss="alert"></button>
+			                        Datos se almacenaron correctamente.
+			                    </div>  		              
+			                <?php endif; ?>					
+				                <fieldset>
+									<div class="control-group">
+										<label class="control-label">Sucursal<span class="required">*</span></label>
+										<div class="controls">
+											<select class="span6 m-wrap" name="inputSucursal" id="inputSucursal" <?php echo $disabled;?> >
+												<option value="">Seleccionar una opción</option>
+				                                <?php echo $this->aSucursales;?>
+											</select>
+										</div>
+									</div>	
+
+									<div class="control-group">
+										<label class="control-label">Perfil<span class="required">*</span></label>
+										<div class="controls">
+											<select class="span6 m-wrap" name="inputPerfil" id="inputPerfil" <?php echo $disabled;?> >
+												<option value="">Seleccionar una opción</option>
+				                                <?php echo $this->aPerfiles;?>
+											</select>
+										</div>
+									</div>	
+									<div class="control-group">
+										<label class="control-label">Usuario<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="inputUsuario" id="inputUsuario" data-required="1" class="span6 m-wrap" value="<?php echo @$this->data['USUARIO']; ?>"  <?php echo $disabled;?> >
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label class="control-label">Contraseña<span class="required">*</span></label>
+										<div class="controls">
+											<input type="password" name="inputPassword" id="inputPassword" data-required="1" class="span6 m-wrap" value="<?php echo @$this->data['']; ?>"  <?php echo $disabled;?> onChange="addValidatePass(this.value)">
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label class="control-label">Confirmar Contraseña<span class="required">*</span></label>
+										<div class="controls">
+											<input type="password" name="inputPasswordC" id="inputPasswordC" class="span6 m-wrap" value="<?php echo @$this->data['']; ?>"  <?php echo $disabled;?> >
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label class="control-label">Nombre<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="inputNombre" id="inputNombre" data-required="1"  class="span6 m-wrap" value="<?php echo @$this->data['NOMBRE']; ?>"  <?php echo $disabled;?> >
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label class="control-label">Apellidos<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="inputApps" id="inputApps"  data-required="1" class="span6 m-wrap" value="<?php echo @$this->data['APELLIDOS']; ?>"  <?php echo $disabled;?> >
+										</div>
+									</div>		
+
+									<div class="control-group">
+										<label class="control-label">E-mail<span class="required">*</span></label>
+										<div class="controls">
+											<input type="mail" name="inputEmail" id="inputEmail"  data-required="1" class="span6 m-wrap" value="<?php echo @$this->data['EMAIL']; ?>"  <?php echo $disabled;?> >
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label class="control-label">Tel. Fijo</label>
+										<div class="controls">
+											<input type="text" name="inputTelFijo" id="inputTelFijo" class="span6 m-wrap" value="<?php echo @$this->data['TEL_FIJO']; ?>"  <?php echo $disabled;?> >
+										</div>
+									</div>	
+
+									<div class="control-group">
+										<label class="control-label">Tel. móvil<span class="required">*</span></label>
+										<div class="controls">
+											<input type="text" name="inputMovil" id="inputMovil" class="span6 m-wrap" value="<?php echo @$this->data['TEL_MOVIL']; ?>"  <?php echo $disabled;?> >
+										</div>
+									</div>								
+
+									<div class="control-group">
+										<label class="control-label">Activo<span class="required">*</span></label>
+										<div class="controls">
+											<select class="m-wrap" name="inputEstatus" id="inputEstatus" <?php echo $disabled;?> >
+												<option value="">Seleccionar una opción</option>
+				                                <?php echo $this->aStatus;?>
+											</select>
+										</div>
+									</div>
+
+									<div class="control-group">
+										<label class="control-label">Operaciones<span class="required">*</span></label>
+										<div class="controls">
+											<select class="m-wrap" name="inputOperaciones" id="inputOperaciones" <?php echo $disabled;?> >
+												<option value="">Seleccionar una opción</option>
+				                                <?php echo $this->aOperaciones;?>
+											</select>
+										</div>
+									</div>	
+
+									<div class="control-group">
+										<label class="control-label">Último Acceso</label>
+										<div class="controls">
+											<label><?php echo @$this->data['ULTIMO_ACCESO']; ?></label>
+										</div>
+									</div>														
+							
+									<?php if($disabled!='disabled'):?>
+									<div class="form-actions">
+										<button type="submit" class="btn btn-primary">Guardar</button>
+										<button type="button" class="btn" onClick="javascript:backToMain()">Cancel</button>
+									</div>
+									<?php endif;?>
+									</fieldset>
+								<?php if($disabled!='disabled'):?>
+								</form>
+								<?php endif;?>
+								<!-- END FORM-->																
+								<?php endif;?>
+							</div>
+						</div> 
+						<div class="tab-pane <?php echo (@$this->eventAction) ? 'active':'';?>" id="detalle">  					
+							<div class="row row-min-h300  row-margin-left25">
+				                <?php if(@$this->eventAction): ?>
+				                    <div class="alert alert-success">
+				                        <button class="close" data-dismiss="alert"></button>
+				                        Datos se almacenaron correctamente.
+				                    </div>  		              
+				                <?php endif; ?>								
+								<!-- BEGIN FORM-->
+								<?php if($disabled!='disabled'):?>								
+								<form method="POST" action="/main/users/getinfo" id="FormData" class="form-horizontal ">
+									<input type="hidden" name="optReg" value="addEvento" />
+									<input type="hidden" id="catId" name="catId" value="<?php echo $this->catId; ?>" />
+								<?php endif;?>	
+									<fieldset>														
+										<div class="row row-margin-left25">
+						                    <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered" id="dataTable">
+						                        <thead>
+						                            <tr>                                        
+						                                <th style="width:100px;">
+															<input type="checkbox" onClick="optionAll(this.checked);"> &nbsp;Todos 
+						                                </th>
+						                                <th>Hora Inico - Hora Fin</th>
+						                            </tr>
+						                        </thead>
+						                        <tbody>						                     	
+						                        	<?php foreach(@$this->aHorarios as $key => $items):?>
+						                        		<tr>
+						                        			<td><input name="inputsCheck<?php echo $items['ID_HORARIO'];?>" class="chkOn" type="checkbox" <?php echo ($items['ASSIGN']) ? 'checked':'';?>></td>
+						                        			<td><?php echo $items['HORARIOS'];?></td>
+						                        		</tr>
+						                        	<?php endforeach;?>
+						                        </tbody>
+						                    </table>    
+										</div>	
+									</fieldset>								
+									<div class="row row-margin-left25">
+										<div class="span12">
+											<?php if($disabled!='disabled'):?>
+											<div class="">
+												<button type="submit" class="btn btn-primary">Guardar</button>
+											</div>
+											<?php endif;?>						
+										</div>													
+									</div>
+												
+
+								<?php if($disabled!='disabled'):?>
+								</form>
+								<?php endif;?>
+
+							</div>	
+						</div>    
+				</div>			
+			</div>
+		</div>
+	</div>	
+</div> 
+
+<div class="modal fade hide modal-lg" id="MyModalSearch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" >Buscar Activos Sin Asignar</h4>
+      </div>
+      <div class="modal-form i-body">             
+		<iframe class="hmodal550" id="iFrameSearch" src="" style="zoom:0" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</div>	 

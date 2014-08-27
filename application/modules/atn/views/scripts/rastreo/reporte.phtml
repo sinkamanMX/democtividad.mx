@@ -1,0 +1,96 @@
+<?php $this->headScript()->appendFile('https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false') ?>
+<?php $this->headScript()->appendFile('/js/atn/reporteRastreo.js'); ?>
+<div class="row customform bg-white">
+	<form method="POST" action="/atn/rastreo/reporte?strInput=<?php echo $this->data['strInput']; ?>" id="FormData" class="form-horizontal formcustom">
+		<input type="hidden" name="optReg" value="search" />
+		<input type="hidden" id="strInput" name="strInput" value="<?php echo $this->data['strInput']; ?>" />
+	
+		<fieldset>											
+			<div class="row row-margin-left25">
+				<div class="span5">
+					<div class="control-group">
+						<label class="control-label">Fecha Inicio<span class="required">*</span></label>
+						<div class="controls">
+							<input readonly id="inputFechaIn" name="inputFechaIn" data-required="1"  type="text" class="form-control" value="<?php echo @$this->data['inputFechaIn']; ?>">
+						</div>
+					</div>				
+				</div>
+				<div class="span5">
+					<div class="control-group">
+						<label class="control-label">Fecha Fin<span class="required">*</span></label>
+						<div class="controls">
+							<input readonly type="text" id="inputFechaFin" name="inputFechaFin" class="m-wrap" value="<?php echo (@$this->data['inputFechaFin']); ?>">							
+						</div>
+					</div>							
+				</div>
+				<div class="span2">
+					<div class="">
+						<button type="submit" class="btn btn-primary">Buscar</button>
+					</div>						
+				</div>													
+			</div>
+		</fieldset>													
+	</form>
+</div>  	
+<div class="customform bg-white">
+	<ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
+	    <li class="active"><a href="#maptab" data-toggle="tab">Mapa</a></li>
+	    <li><a href="#tabular" data-toggle="tab">Tabular</a></li>
+	</ul>
+	<div id="my-tab-content" class="tab-content">	
+	    <div class="tab-pane active" id="maptab">
+	    	<div id="Map" style="width:98%;height:350px;"></div>
+	    </div> 
+
+	    <div class="tab-pane" id="tabular">
+			<div class="button-excel-15">
+				<?php if(count($this->aRecorrido)>0): ?>
+					<div class="btn-group">
+					 <a target="_blank" href="/atn/rastreo/exportsearch?strInput=<?php echo $this->data['strInput']; ?>&inputFechaIn=<?php echo @$this->data['inputFechaIn'];?>&inputFechaFin=<?php echo @$this->data['inputFechaFin'];?>"><button class="btn btn-success"> Exportar <i class="icon-file icon-white"></i></button></a>
+					</div>
+				<?php endif;?>
+	        </div>
+			<table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered"  id="dataTable">
+				<thead>				
+				    <tr>
+				        <th>Fecha GPS</th>
+				        <th>Tipo</th>
+				        <th>Evento</th>
+				        <th>Latitud</th>
+				        <th>Longitud</th>
+				        <th>Velocidad</th>
+				        <th>Bateria</th>
+				        <th>Ubicación</th>
+				    </tr>
+				</thead>
+				<tbody>
+					<?php $result = '';?>
+					<?php foreach($this->aRecorrido as $key => $items): ?>
+						<tr>
+							<td><?php echo $items['FECHA_TELEFONO'];?></td>
+							<td><?php echo $items['TIPO_GPS'];?></td>
+							<td><?php echo $items['EVENTO'];?></td>
+							<td><?php echo $items['LATITUD'];?></td>
+							<td><?php echo $items['LONGITUD'];?></td>
+							<td><?php echo round($items['VELOCIDAD'],2);?> kms/h.</td>
+							<td><?php echo round($items['NIVEL_BATERIA'],2);?> %</td>
+							<td><?php echo $items['UBICACION'];?></td>
+						</tr>
+
+						<?php $result .= ($result!="") ? "!" : "";?>
+						<?php $result .= $items['ID_TELEFONO']."|".
+										 $items['FECHA_TELEFONO']."|".
+										 $items['TIPO_GPS']."|".
+										 $items['EVENTO']."|".
+										 $items['LATITUD']."|".
+										 $items['LONGITUD']."|".
+										 round($items['VELOCIDAD'],2)."|".
+										 round($items['NIVEL_BATERIA'],2)."|".
+										 $items['UBICACION'];?>
+					<?php  endforeach;?>
+				</tbody>
+			</table>
+			<div id="positions" class="hide"><?php echo $result; ?></div>    	
+	    </div>
+	</div>
+</div>

@@ -1,0 +1,150 @@
+<?php $this->headScript()->appendFile('/vendors/graphs/js/jquery.circliful.js'); ?>
+<?php $this->headScript()->appendFile('/js/atn/service.js'); ?>
+<div id="divDataPersonal" class="hide"><?php foreach($this->aTecnicos as $key => $items):?><?php echo ($control==0) ? '': '?';?><?php echo $items['ID']."|".$items['NAME']."|".$items['ID_SUCURSAL'];?><?php $control++;?><?php endforeach;?>
+</div>
+<div class="row panel-data formcustom">
+    <div class="span12">    
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">Citas</div>
+            </div>
+            <div class="block-content-min collapse in">
+                <div class="span12">
+                    <div class="row customform bg-white">
+                        <form method="POST" action="/atn/services/index" id="FormData" class="form-horizontal formcustom">
+                            <input type="hidden" name="optReg" value="search" />
+                            <fieldset>                             
+                                <div class="row row-margin-left25">    
+                                    <div class="span5">
+                                        <div class="control-group">
+                                            <label class="control-label">Fecha Inicio<span class="required">*</span></label>
+                                            <div class="controls">
+                                                <input readonly id="inputFechaIn" name="inputFechaIn" data-required="1"  type="text" class="form-control" value="<?php echo @$this->data['inputFechaIn']; ?>">
+                                            </div>
+                                        </div>              
+                                    </div>
+                                    <div class="span5">
+                                        <div class="control-group">
+                                            <label class="control-label">Fecha Fin<span class="required">*</span></label>
+                                            <div class="controls">
+                                                <input readonly type="text" id="inputFechaFin" name="inputFechaFin" class="m-wrap" value="<?php echo (@$this->data['inputFechaFin']); ?>">                          
+                                            </div>
+                                        </div>                          
+                                    </div>                                               
+                                </div>                                         
+                                <div class="row row-margin-left25">
+                                    <div class="span5">
+                                        <div class="control-group">
+                                            <label class="control-label">Sucursales<span class="required">*</span></label>
+                                            <div class="controls">
+                                                <select class="chzn-select" id="cboInstalacion" name="cboInstalacion" onChange="getReport()">
+                                                    <option value="">Seleccionar una opción</option>
+                                                    <?php echo $this->cInstalaciones;?>
+                                                </select>
+                                            </div>
+                                        </div>              
+                                    </div>
+                                    <div class="span5 <?php echo (isset($this->showUsers))? '': 'hide'; ?>">
+                                        <div class="control-group">
+                                            <label class="control-label">Técnicos<span class="required">*</span></label>
+                                            <div class="controls">
+                                                <select class="chzn-select" id="inputTecnicos" name="inputTecnicos" >
+                                                    <option value="">Todos</option>
+                                                    <?php echo $this->aTecnicos;?>
+                                                </select>
+                                            </div>
+                                        </div>                          
+                                    </div>
+                                    <div class="span2">
+                                        <div class="">
+                                            <button type="submit" class="btn btn-primary">Buscar</button>
+                                        </div>
+                                    </div>                                       
+                                </div>
+                            </fieldset>                                                 
+                        </form>
+                    </div>      
+                    <div class="span11">
+                          <div class="span2">
+                                <div class="graphCircle" 
+                                    data-dimension="150" 
+                                    data-text="<?php echo $this->dataResumeTotal;?>" 
+                                    data-info="Total Citas" 
+                                    data-width="30" 
+                                    data-fontsize="38" 
+                                    data-percent="100" 
+                                    data-fgcolor="#2D66F5" 
+                                    data-bgcolor="#E2E2E2" 
+                                    data-fill="#F3F3F3"></div>
+                            </div>        
+                            <?php foreach($this->dataResume as $key => $items):?>
+                            <?php $porcentaje = (round($items['TOTAL'] / $this->dataResumeTotal * 100, 0)); ?>
+                            <div class="span2">
+                                <div class="graphCircle" 
+                                    data-dimension="150" 
+                                    data-text="<?php echo $items['TOTAL'];?>" 
+                                    data-info="<?php echo $items['DESC'];?>" 
+                                    data-width="30" 
+                                    data-fontsize="38" 
+                                    data-percent="<?php echo $porcentaje;?>" 
+                                    data-fgcolor="<?php echo $items['COLOR'];?>" 
+                                    data-bgcolor="#E2E2E2" 
+                                    data-fill="#F3F3F3"></div>
+                            </div>    
+                            <?php endforeach;?>           
+                    </div>
+                    <div class="span11">
+                        <div class="button-excel-rel">
+                            <?php if(count($this->aResume)>0): ?>
+                                <div class="btn-group">
+                                 <a href="javascript:alert('Exportará información');"><button class="btn btn-success"> Exportar <i class="icon-file icon-white"></i></button></a>                                    
+                            <!--
+                                 <a target="_blank" href="/atn/rastreo/exportsearch?strInput=<?php echo $this->data['strInput']; ?>&inputFechaIn=<?php echo @$this->data['inputFechaIn'];?>&inputFechaFin=<?php echo @$this->data['inputFechaFin'];?>"><button class="btn btn-success"> Exportar <i class="icon-file icon-white"></i></button></a>
+                             -->
+                                </div>
+                            <?php endif;?>
+                        </div>                        
+                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-bordered"  id="dataTable">
+                        <thead>             
+                            <tr>
+                                <th>Id Cita</th>
+                                <th>Estatus</th>
+                                <th>Cliente</th>
+                                <th>Fecha Programada</th>
+                                <th>Hora Programada</th>
+                                <th>Hora Inicio</th>
+                                <th>Hora Terminado</th>
+                                <th>Técnico Asignado</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php $result = '';?>
+                            <?php foreach($this->aResume as $key => $items): ?>
+                                <tr>                   
+                                    <td><?php echo $items['ID'];?></td>
+                                    <td><?php echo $items['DESCRIPCION'];?></td>
+                                    <td><?php echo $items['NOMBRE_CLIENTE'];?></td>
+                                    <td><?php echo $items['F_PROGRAMADA'];?></td>
+                                    <td><?php echo $items['H_PROGRAMADA'];?></td>
+                                    <td><?php echo $items['FECHA_INICIO'];?></td>
+                                    <td><?php echo $items['FECHA_TERMINO'];?></td>
+                                    <td><?php echo $items['NOMBRE_TECNICO'];?></td>
+                                    <td class="text-center">
+                                        <?php if($items['IDE']==4):?>
+                                        <a href="/atn/services/exportsearch?strInput=<?php echo $items['ID']; ?>">
+                                            <button class="btn btn-success"> <i class="icon-file icon-white"></i>
+                                            </button>
+                                        </a>
+                                        <?php endif;?>
+                                    </td>
+                                </tr>
+                            <?php  endforeach;?>
+                        </tbody>
+                    </table>                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

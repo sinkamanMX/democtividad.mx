@@ -1,0 +1,122 @@
+<?php $this->headScript()->appendFile('/js/main/validateActivos.js') ?>  
+<?php $disabled = ($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==1) ? 'disabled':'';?>
+<div class="row panel-data">
+    <input id="hRefLinkMain" type="hidden" value="/main/activos/index" />
+    <div class="span12">
+        <!-- block -->
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">
+                    <a href="javascript:backToMainModule()">
+                        <i class="icon-circle-arrow-left fa-1"></i></a>Información del Activo</div>
+            </div>
+            <div class="block-content collapse in">
+                <div class="span12">
+                    <?php if(@$this->errors['eIMEI']):?>
+                        <div id="divpErrorLogin" class="alert alert-error" style="display:block;">
+                          <button type="button" class="close" data-dismiss="alert">×</button>
+                          <h4>Error</h4>
+                          <div>El IMEI no se encuentra disponible</div>
+                        </div>  
+                    <?php endif;?>
+                    <?php if($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==0): ?>
+                        <div id="divpErrorLogin" class="alert alert-error" style="display:block;">
+                          <button type="button" class="close" data-dismiss="alert">×</button>
+                          <h4>Error</h4>
+                          <div>Usted no tiene permiso para ver esta información</div>
+                        </div>                      
+                    <?php else:?>   
+
+                    <!-- BEGIN FORM-->
+                    <?php if($disabled!='disabled'):?>
+                    <form method="POST" action="/main/activos/getinfo" id="FormData" class="form-horizontal ">
+                    <?php endif;?>  
+                        <input type="hidden" name="optReg" value="<?php echo ($this->idToUpdate>0) ? 'update': 'new';?>" />
+                        <input type="hidden" id="catId" name="catId" value="<?php echo $this->catId; ?>" />
+                        
+                        <?php if($this->resultOp=='okRegister'): ?>
+                            <div class="alert alert-success">
+                                <button class="close" data-dismiss="alert"></button>
+                                Datos se almacenaron correctamente.
+                            </div>                        
+                        <?php endif; ?>                 
+                            <fieldset>
+                                <div class="control-group">
+                                    <label class="control-label">Marca<span class="required">*</span></label>
+                                    <div class="controls">
+                                        <select class="span4 m-wrap" name="inputMarca" id="inputMarca" <?php echo $disabled;?>  onChange="getoptionsCbo('Modelo','modeloa',this.value,'','');">
+                                            <option value="">Seleccionar una opción</option>
+                                            <?php echo $this->marcas;?>
+                                        </select>
+                                    </div>
+                                </div>  
+                                <div class="control-group">
+                                    <label class="control-label">Modelo<span class="required">*</span></label>
+                                    <div class="controls">
+                                        <div id="divModelo">
+                                            <select class="span4 m-wrap" name="inputModelo" id="inputModelo" <?php echo $disabled;?> >
+                                                <option value="">Seleccionar una opción</option>
+                                                <?php echo $this->modelos;?>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label">Color<span class="required">*</span></label>
+                                    <div class="controls">
+                                        <select class="span4 m-wrap" name="inputColor" id="inputColor" <?php echo $disabled;?> >
+                                            <option value="">Seleccionar una opción</option>
+                                            <?php echo $this->aColores;?>
+                                        </select>
+                                    </div>
+                                </div>                              
+                                <div class="control-group">
+                                    <label class="control-label">Descripción<span class="required">*</span></label>
+                                    <div class="controls">
+                                        <input type="text" name="inputDesc" data-required="1" class="span6 m-wrap" value="<?php echo @$this->data['DESCRIPCION']; ?>"  <?php echo $disabled;?> >
+                                    </div>
+                                </div>
+
+                                <div class="control-group">
+                                    <label class="control-label">Placas<span class="required">*</span></label>
+                                    <div class="controls">
+                                        <input name="inputPlacas" type="text" class="span6 m-wrap" value="<?php echo @$this->data['PLACAS']; ?>" <?php echo $disabled;?> >
+                                    </div>
+                                </div>
+                                <div class="control-group">
+                                    <label class="control-label"># Motor<span class="required">*</span></label>
+                                    <div class="controls">
+                                        <input name="inputMotor" type="text" class="span6 m-wrap" value="<?php echo @$this->data['MOTOR']; ?>" <?php echo $disabled;?> >
+                                    </div>
+                                </div>                           
+                                <?php if($disabled!='disabled'):?>
+                                <div class="form-actions">
+                                    <button type="submit" class="btn btn-primary">Guardar</button>
+                                    <button type="button" class="btn" onClick="javascript:backToMain()">Cancel</button>
+                                </div>
+                                <?php endif;?>
+                        </fieldset>
+                    <?php if($disabled!='disabled'):?>
+                    </form>
+                    <?php endif;?>
+                    <!-- END FORM-->                                                                
+                    <?php endif;?>
+                </div>                    
+                </div>          
+            </div>
+        </div>
+</div> 
+
+<div class="modal fade hide modal-lg" id="MyModalSearch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" >Buscar Activos Sin Asignar</h4>
+      </div>
+      <div class="modal-form i-body">             
+        <iframe class="hmodal550" id="iFrameSearch" src="" style="zoom:0" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</div>   

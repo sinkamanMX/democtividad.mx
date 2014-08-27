@@ -1,0 +1,154 @@
+<?php $this->headScript()->appendFile('/js/modules/functionGral.js') ?>   
+<?php $this->headScript()->appendFile('/js/callcenter/cardetail.js') ?>   
+   <div class="row panel-data">
+		<div class="span12">			
+        	<div class="block row-min-h">
+				<div class="navbar">
+					<div class="navbar-inner">
+				        <ul class="breadcrumb">				            
+				            <li class="">
+				                <a href="/callcenter/callservice/index">Datos del Cliente</a> <span class="divider">/</span>	
+				            </li>
+				            <li>
+				                <a href="/callcenter/callservice/instalation">Ubicación de la Instalación</a> <span class="divider">/</span>	
+				            </li>	
+				            <li class="active">
+				                <a href="javascript:void()">Datos del Vehículo</a> <span class="divider">/</span>	
+				            </li>					            			            
+				        </ul>
+					</div>
+				</div>
+				<form method="POST" action="/callcenter/callservice/cardetail" id="FormData" class="form-horizontal ">
+                	<input type="hidden" name="optReg" value="new" />
+					<fieldset>
+						<div class="">
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">Tarjeta Circulación</label>
+									<div class="controls">
+				                          <input id="inputTdc" name="inputTdc" type="text" class="form-control upper" value="<?php echo @$this->data['inputTdc']; ?>" >
+									</div>
+								</div>				
+							</div>
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">Licencia de Manejo</label>
+									<div class="controls">
+										<input type="text" id="inputLicencia" name="inputLicencia" class="m-wrap upper" value="<?php echo (@$this->data['inputLicencia']); ?>"  >
+									</div>
+								</div>							
+							</div>						
+						</div>	
+
+						<div class="">
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">Vigencia de la Licencia</label>
+									<div class="controls">
+				                          <input id="inputVigencia" name="inputVigencia" type="text" class="form-control upper" value="<?php echo @$this->data['inputVigencia']; ?>" >
+									</div>
+								</div>				
+							</div>
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">Lugar de emisión</label>
+									<div class="controls">
+										<input type="text" id="inputEmision" name="inputEmision" class="m-wrap upper" value="<?php echo (@$this->data['inputEmision']); ?>"  >
+									</div>
+								</div>							
+							</div>						
+						</div>	
+
+						<div class="">
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">Marca
+										<span class="required">*</span></label>
+									<div class="controls">
+										<select class="m-wrap upper" name="inputMarca" id="inputMarca" onChange="getoptionsCbo('Modelo','modeloa',this.value,'','');">
+											<option value="">Seleccionar una opción</option>
+			                                <?php echo $this->marcas;?>
+										</select>
+									</div>
+								</div>				
+							</div>
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">Modelo<span class="required">*</span></label>
+									<div class="controls">
+										<div id="divModelo">
+											<select class="m-wrap upper" name="inputModelo" id="inputModelo"  >
+												<option value="">Seleccionar una opción</option>
+				                                <?php echo $this->modelos;?>
+											</select>
+										</div>
+									</div>
+								</div>							
+							</div>						
+						</div>	
+
+						<div class="">
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">Año<span class="required">*</span></label>
+									<div class="controls">
+				                          <input id="inputAno" name="inputAno" data-required="1" type="text" class="form-control upper" value="<?php echo @$this->data['inputAno']; ?>" >
+									</div>
+								</div>				
+							</div>
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">Color<span class="required">*</span></label>
+									<div class="controls">
+										<select class="m-wrap upper" name="inputColor" id="inputColor">
+											<option value="">Seleccionar una opción</option>
+			                                <?php echo $this->colores;?>
+										</select>										
+									</div>
+								</div>							
+							</div>						
+						</div>	
+
+						<div class="">
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">Placas<span class="required">*</span></label>
+									<div class="controls">
+				                          <input id="inputPlacas" name="inputPlacas" type="text"  data-required="1"  class="form-control upper" value="<?php echo @$this->data['inputPlacas']; ?>" >
+									</div>
+								</div>				
+							</div>
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">No. Serie<span class="required">*</span></label>
+									<div class="controls">
+										<input type="text" id="inputSerie" name="inputSerie"  data-required="1"   class="m-wrap upper" value="<?php echo (@$this->data['inputSerie']); ?>"  >
+									</div>
+								</div>							
+							</div>						
+						</div>	
+
+						<div class="">
+							<div class="span5">
+								<div class="control-group">
+									<label class="control-label-lg">No. Motor</label>
+									<div class="controls">
+				                          <input id="inputMotor" name="inputMotor" type="text" class="form-control upper" value="<?php echo @$this->data['inputMotor']; ?>" >
+									</div>
+								</div>				
+							</div>					
+						</div>		
+
+						<div class="span11">
+					    	<div class="col-xs-4 col-md-5">
+								<div class="pull-right">	
+									<button type="button" class="btn" onClick="javascript:backToMain()">Cancelar</button>		
+									<button type="submit" class="btn btn-default bg-btn-send">Continuar</button>
+								</div>    
+					    	</div>						
+						</div>						
+					</fieldset>	                	
+                </form>	
+        	</div>
+    	</div>
+	</div>    

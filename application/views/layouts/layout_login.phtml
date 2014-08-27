@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <link type="image/x-icon" href="/siames/image/favicon.ico" rel="shortcut icon">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Siames</title>
+    <link href="/siames/css/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="section_back" class="process"></div>
+<div id="wrapper">
+	<div id="header">
+    	<img src="/siames/image/siames.png" width="150"/>
+    </div>
+  <div id="divpErrorLogin" class="alert alert-error" style="display:none;color: #ffffff;margin: 5px;">
+      <h4>Error</h4>
+
+      <div id="pErrorLogin"></div>
+  </div>    
+    <div id="information">
+    
+        	<div id="login">
+            	<div id="users"> 
+                	<input id="inputUser" name="inputUser" type="text" value="USUARIO" onclick="this.value='';" onblur="this.value=(this.value=='')?'USUARIO':this.value;" class="imputbox" style="width:200px; height:20px; background:transparent; border:0; color:#ffffff; padding-left:5px; letter-spacing:0.5px; font-size:10px;">
+                </div>
+                <div id="pass">    
+                	<input id="inputPassword" name="inputPassword" type="password" value="PASSWORD" onclick="this.value='';" onblur="this.value=(this.value=='')?'PASSWORD':this.value;" style="width:200px; height:20px; background:transparent; border:0; color:#ffffff; padding-left:5px; letter-spacing:0.5px; font-size:10px;">
+                </div>
+                <br />
+                <label>
+                  <input type="checkbox" id="datos" value="datos" name="datos" /> Recordar Datos
+                </label>
+      		</div>
+            <div id="buttons">
+            	<div id="entrar" class="aceptar" onClick="validateLogin()">
+                </div>
+            </div>
+	
+    </div>
+</div>
+<div id="footer">
+	Copyright © 2014 Siames. D.R.
+</div>
+</body>
+
+<script src="/vendors/jquery-1.9.1.min.js"></script>
+<script src="js/modules/login.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+    $(function() {
+        $('.aceptar').hover(function() {
+            jQuery('.aceptar').addClass("aceptar_hover");
+        },
+        function() {
+            jQuery('.aceptar').removeClass("aceptar_hover");
+        });
+    });
+</script>
+</html>

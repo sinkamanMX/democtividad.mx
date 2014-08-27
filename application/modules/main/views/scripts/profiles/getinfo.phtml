@@ -1,0 +1,100 @@
+<?php $this->headScript()->appendFile('/js/main/validateProfile.js') ?>  
+<?php $disabled = ($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==1) ? 'disabled':'';?>
+<div class="row panel-data">
+    <input id="hRefLinkMain" type="hidden" value="/main/profiles/index" />
+	<div class="span12">
+		<!-- block -->
+        <div class="block">
+            <div class="navbar navbar-inner block-header">
+                <div class="muted pull-left">
+					<a href="javascript:backToMain()">
+						<i class="icon-circle-arrow-left fa-1"></i></a>Información del Usuario</div>
+            </div>
+            <div class="block-content collapse in">
+                <div class="span12">
+				<?php if($this->dataUser['EDITAR']==0 && $this->dataUser['LECTURA']==0): ?>
+					<div id="divpErrorLogin" class="alert alert-error" style="display:block;">
+					  <button type="button" class="close" data-dismiss="alert">×</button>
+					  <h4>Error</h4>
+					  <div>Usted no tiene permiso para ver esta información</div>
+					</div>						
+				<?php else:?>	
+
+				<!-- BEGIN FORM-->
+				<?php if($disabled!='disabled'):?>
+				<form method="POST" action="/main/profiles/getinfo" id="FormData" class="form-horizontal ">
+				<?php endif;?>	
+	                <input type="hidden" name="optReg" value="<?php echo ($this->idToUpdate>0) ? 'update': 'new';?>" />
+	                <input type="hidden" id="catId" name="catId" value="<?php echo $this->catId; ?>" />
+	                
+	                <?php if($this->resultOp=='okRegister'): ?>
+	                    <div class="alert alert-success">
+	                        <button class="close" data-dismiss="alert"></button>
+	                        Datos se almacenaron correctamente.
+	                    </div>  		              
+	                <?php endif; ?>
+		                <fieldset>
+							<div class="control-group">
+								<label class="control-label">Descripción<span class="required">*</span></label>
+								<div class="controls">
+									<input type="text" name="inputDescripcion" id="inputDescripcion" data-required="1" class="span6 m-wrap" value="<?php echo @$this->data['DESCRIPCION']; ?>"  <?php echo $disabled;?> >
+								</div>
+							</div>
+
+							<div class="control-group">
+								<label class="control-label">Opciones<span class="required">*</span></label>
+								<div class="controls">
+									<input type="checkbox" onClick="optionAll(this.checked);" <?php echo (@$this->data['INSERTAR']==1 && @$this->data['LECTURA']==1 && @$this->data['EDITAR']==1 && @$this->data['ELIMINAR']==1) ? 'checked':'';?>>&nbsp;Todas 
+									&nbsp;
+									<input name="inputAgregar" class="chkOn" type="checkbox" <?php echo (@$this->data['INSERTAR']==1) ? 'checked':'';?>>&nbsp;Agregar 
+									&nbsp;
+									<input name="inputLeer"    class="chkOn" type="checkbox" <?php echo (@$this->data['LECTURA']==1)? 'checked':'';?>>&nbsp;Leer
+									&nbsp;
+									<input name="inputEditar"  class="chkOn" type="checkbox" <?php echo (@$this->data['EDITAR']==1)? 'checked':'';?>>&nbsp;Editar
+									&nbsp;
+									<input name="inputBorrar"  class="chkOn" type="checkbox" <?php echo (@$this->data['ELIMINAR']==1)? 'checked':'';?>>&nbsp;Borrar									
+								</div>
+							</div>			
+
+							<div class="control-group">
+								<label class="control-label">Activo<span class="required">*</span></label>
+								<div class="controls">
+									<select class="m-wrap" name="inputEstatus" id="inputEstatus" <?php echo $disabled;?> >
+										<option value="">Seleccionar una opción</option>
+		                                <?php echo $this->aStatus;?>
+									</select>
+								</div>
+							</div>
+							<?php if($disabled!='disabled'):?>
+							<div class="form-actions">
+								<button type="submit" class="btn btn-primary">Guardar</button>
+								<button type="button" class="btn" onClick="javascript:backToMain()">Cancel</button>
+							</div>
+							<?php endif;?>
+					</fieldset>
+				<?php if($disabled!='disabled'):?>
+				</form>
+				<?php endif;?>
+				<!-- END FORM-->																
+				<?php endif;?>
+			</div>
+				    
+				</div>			
+			</div>
+		</div>
+	</div>	
+</div> 
+
+<div class="modal fade hide modal-lg" id="MyModalSearch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" >
+  <div class="modal-dialog ">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" >Buscar Activos Sin Asignar</h4>
+      </div>
+      <div class="modal-form i-body">             
+		<iframe class="hmodal550" id="iFrameSearch" src="" style="zoom:0" frameborder="0"></iframe>
+      </div>
+    </div>
+  </div>
+</div>	 
